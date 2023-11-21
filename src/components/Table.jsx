@@ -1,4 +1,3 @@
-
 function TableHeader(){
    
     return(
@@ -22,9 +21,8 @@ const TableBody = (props) => {
           <td>
             <a href={row.URL}>{row.URL}</a>
           </td>
-          <td><button onClick={() => props.removeLink(index)}>Delete</button></td>
           <td>
-            <input type="submit" value="Submit"></input>
+            <button onClick={() => props.removeLink(index)}>Delete</button>
           </td>
         </tr>
       )
@@ -32,11 +30,16 @@ const TableBody = (props) => {
   
     return <tbody>{rows}</tbody>
   }
-function Table(){
+function Table(props){
+
+  const handleRemove = (index) =>{
+    console.log("button clocked", index)
+  }
     return(
         <table>
         <TableHeader />
-        <TableBody />
+        <TableBody linkData={props.linkData}  
+        removeLink = {handleRemove}/>
         </table>
     )
 }

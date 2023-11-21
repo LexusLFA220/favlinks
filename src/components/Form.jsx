@@ -1,34 +1,35 @@
-function Form(){
-   
-    this.state = {
-      
-        name: '', URL: ''
-      };
+import { useState } from "react"
+function Form(props){
+    const[name,setName] =useState("")
 
-      handleChange = event => {
-        this.setState({[event.target.name]: event.target.value})
+    const[URL, setURL]  =useState("")
+
+     const handleNameChange = (event) => {
+        setName(event.target.value)
       }
 
-      submitForm = event => {
-        event.preventDefault()
-        const{name, URL} = this.state
-
-        this.props.handleSubmit({name, URL})
-        this.setState({name: '', URL: '' })
+      const handleURLChange = (event) => {
+        setURL(event.target.value)
       }
 
     return(
-        <form>
-            <label for="linkName">Link Name:</label>   
-            <input type="text" id="linkName" name="linkName" value={this.state.linkName} onChange={this.handleChange} />
-            <br />
-            <br />
-            <label for="URL">Link URL:</label>
-            <input type="text" id="linkURL" name="linkURL" value={this.state.URL} onChange={this.handleChange} />
-            <br />
-            <br />
-            <button onClick ={this.submitForm}>Submit</button>
-        </form>
+      <form onSubmit={(event)=>{
+        event.preventDefault()
+        props.handleSubmitLink({name, URL})
+
+      }}>
+      <label for="linkName">Link Name:</label>
+      <input type="text" id="linkName" 
+      name="linkName" onChange={handleNameChange}  />
+      <br />
+      <br />
+      <label for="URL">Link URL:</label>
+      <input type="text" id="linkURL" 
+      name="linkURL" onChange={handleURLChange} />
+      <br/>
+      <br />
+      <input type="submit" value="Submit"></input>
+      </form>
     )
 }
 

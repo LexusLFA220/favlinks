@@ -1,27 +1,16 @@
 import Table from "./Table"
 import Form from "./Form"
-
+import { useState } from "react";
 function LinkContainer(){
   
-    this.state ={
-    
-        favLinks: []
-    };
-  
+  const [favLinks, setFavLinks] = useState([])
 
-    const removeLink = (index) => {
-        const tempArray = [...this.state.favLinks];
-
-        tempArray.splice(index, 1);
-
-        this.setState({ favLinks: tempArray });
+    const handleRemove = (index) => {
+        
       }
 
     const handleSubmit = (favLink) => {
-        this.setState(prevState => ({
-        
-        favLinks: [...prevState.favLinks, favLink]
-          }));
+      setFavLinks([...favLinks,favLink])
       }
 
     return(
@@ -31,13 +20,13 @@ function LinkContainer(){
            <p>Add a new link with a name and URL to 
             the table!</p>
             <Table 
-            linkData = {this.state.favLinks}
-            removeLink = {this.removeLink} />
+            linkData={favLinks}
+            prop2 prop3 />
             <h1>Add New</h1>
 
-            <Form handleSubmit ={this.handleSubmit}/>
+            <Form handleSubmitLink ={handleSubmit}/>
         </div>
-     );
+     )
 
 }
 
