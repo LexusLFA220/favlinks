@@ -32,14 +32,12 @@ const TableBody = (props) => {
   }
 function Table(props){
 
-  const handleRemove = (index) =>{
-    console.log("button clocked", index)
-  }
+  
     return(
         <table>
         <TableHeader />
         <TableBody linkData={props.linkData}  
-        removeLink = {handleRemove}/>
+        removeLink = {props.removeLink}/>
         </table>
     )
 }

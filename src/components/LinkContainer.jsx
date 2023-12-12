@@ -6,7 +6,10 @@ function LinkContainer(){
   const [favLinks, setFavLinks] = useState([])
 
     const handleRemove = (index) => {
-        
+        let _links = [...favLinks]
+        _links.splice(index,1)
+        setFavLinks(_links) 
+        console.log(index)
       }
 
     const handleSubmit = (favLink) => {
@@ -21,7 +24,7 @@ function LinkContainer(){
             the table!</p>
             <Table 
             linkData={favLinks}
-            prop2 prop3 />
+            removeLink={handleRemove} />
             <h1>Add New</h1>
 
             <Form handleSubmitLink ={handleSubmit}/>
