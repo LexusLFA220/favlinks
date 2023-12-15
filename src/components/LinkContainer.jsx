@@ -2,7 +2,35 @@ import Table from "./Table"
 import Form from "./Form"
 import { useState } from "react";
 function LinkContainer(){
-  
+  const getLinks = async () => {
+    try {
+      // make a request to our server to get the links
+      const response = await fetch('/api/links')
+      // convert the response to json
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const postLink = async (newLink) => {
+    try{
+      let response = await fetch('/new', {
+        method: 'Post', 
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newLink),
+      })
+      console.log(response)
+      let message = response.text()
+      console.log(message)
+    } 
+    catch (error){
+      console.error(error)
+    }
+
+  }
   const [favLinks, setFavLinks] = useState([])
 
     const handleRemove = (index) => {
